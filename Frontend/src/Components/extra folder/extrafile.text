@@ -1,0 +1,84 @@
+ {/* div for member cards */}
+
+                {/* <div className='bg-white rounded-lg p-3 hover:text-white hover:bg-gradient-to-r from-indigo-500 via-purle-500 to-pink-500 cursor-pointer'>
+                    <div className='w-28 h-28 flex justify-center relative items-center border-2 p-1 mx-auto rounded-full'><img className='w-full h-full rounded-full' src="https://images.pexels.com/photos/3289711/pexels-photo-3289711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="profile pic" />
+                        <Brightness1Icon className='absolute top-0 left-0' sx={{ color: "green" }} /></div>
+                    <div className='mx-auto text-center p-2 text-xl font-mono'>
+                        <p> Shubham Kumar</p>
+                        <p>+91 6308XXXXXXX</p>
+                        <p>Next Bill Date : 31-12-2024</p>
+                    </div>
+                </div>
+
+                <div className='bg-white rounded-lg p-3 hover:text-white hover:bg-gradient-to-r from-indigo-500 via-purle-500 to-pink-500 cursor-pointer'>
+                    <div className='w-28 h-28 flex justify-center relative items-center border-2 p-1 mx-auto rounded-full'><img className='w-full h-full rounded-full' src="https://images.pexels.com/photos/1229356/pexels-photo-1229356.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="profile pic" />
+                        <Brightness1Icon className='absolute top-0 left-0' sx={{ color: "green" }} /></div>
+                    <div className='text-center p-2 mx-auto text-xl font-mono'>
+                        <p>Arun Kumar</p>
+                        <p>+91 7308XXXXXXX</p>
+                        <p>Next Bill Date : 31-10-2024</p>
+                    </div></div>
+
+                <div className='bg-white rounded-lg p-3 hover:text-white hover:bg-gradient-to-r from-indigo-500 via-purle-500 to-pink-500 cursor-pointer'>
+                    <div className='w-28 h-28 flex justify-center relative items-center border-2 p-1 mx-auto rounded-full'><img className='w-full h-full rounded-full' src="https://images.pexels.com/photos/6551174/pexels-photo-6551174.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="profile pic" />
+                        <Brightness1Icon className='absolute top-0 left-0' sx={{ color: "green" }} /></div>
+                    <div className='text-center p-2  mx-auto text-xl font-mono'>
+                        <p>Shoniya Singh</p>
+                        <p>+91 8908XXXXXXX</p>
+                        <p>Next Bill Date : 11-12-2024</p>
+                    </div></div>
+
+                <div className='bg-white rounded-lg p-3 hover:text-white hover:bg-gradient-to-r from-indigo-500 via-purle-500 to-pink-500 cursor-pointer'>
+                    <div className='w-28 h-28 flex justify-center relative items-center border-2 p-1 mx-auto rounded-full'><img className='w-full h-full rounded-full' src="https://images.pexels.com/photos/13106619/pexels-photo-13106619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="profile pic" />
+                        <Brightness1Icon className='absolute top-0 left-0' sx={{ color: "green" }} /></div>
+                         <div className='text-center p-2  mx-auto text-xl font-mono'>
+                        <p>Ankush</p>
+                        <p>+91 9999XXXXXX</p>
+                        <p>Next Bill Date : 31-12-2024</p>
+                    </div></div>
+
+                <div className='bg-white rounded-lg p-3 hover:text-white hover:bg-gradient-to-r from-indigo-500 via-purle-500 to-pink-500 cursor-pointer'>
+                    <div className='w-28 h-28 flex justify-center relative items-center border-2 p-1 mx-auto rounded-full'><img className='w-full h-full rounded-full' src="https://images.pexels.com/photos/3289711/pexels-photo-3289711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="profile pic" />
+                        <Brightness1Icon className='absolute top-0 left-0' sx={{ color: "green" }} /></div>
+                        <div className='text-center p-2  mx-auto text-xl font-mono'>
+                        <p>Sohil Kumar</p>
+                        <p>+91 9876XXXXXX</p>
+                        <p>Next Bill Date : 31-2-2024</p>
+                    </div></div>
+
+                <div className='bg-white rounded-lg p-3 hover:text-white hover:bg-gradient-to-r from-indigo-500 via-purle-500 to-pink-500 cursor-pointer'>
+                    <div className='w-28 h-28 flex justify-center relative items-center border-2 p-1 mx-auto rounded-full'><img className='w-full h-full rounded-full' src="https://images.pexels.com/photos/13106619/pexels-photo-13106619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="profile pic" />
+                        <Brightness1Icon className='absolute top-0 left-0' sx={{ color: "green" }} /></div> 
+                        <div className='text-center p-2  mx-auto text-xl font-mono'>
+                        <p>Sorav Kumar</p>
+                        <p>+91 987XXXXXXX</p>
+                        <p>Next Bill Date : 01-11-2024</p>
+                    </div></div>
+                
+                <div className='bg-white rounded-lg p-3 hover:text-white hover:bg-gradient-to-r from-indigo-500 via-purle-500 to-pink-500 cursor-pointer'>
+                    <div className='w-28 h-28 flex justify-center relative items-center border-2 p-1 mx-auto rounded-full'><img className='w-full h-full rounded-full' src="https://images.pexels.com/photos/30370272/pexels-photo-30370272/free-photo-of-back-view-of-muscular-man-in-gym-environment.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="profile pic" />
+                        <Brightness1Icon className='absolute top-0 left-0' sx={{ color: "green" }} /></div>
+                        <div className='text-center p-2  mx-auto text-xl font-mono'>
+                        <p>Gaurav Kumar</p>
+                        <p>+91 630XXXXXXX</p>
+                        <p>Next Bill Date : 01-12-2024</p>
+                    </div></div>
+
+                <div className='bg-white rounded-lg p-3 hover:text-white hover:bg-gradient-to-r from-indigo-500 via-purle-500 to-pink-500 cursor-pointer'>
+                    <div className='w-28 h-28 flex justify-center relative items-center border-2 p-1 mx-auto rounded-full'><img className='w-full h-full rounded-full' src="https://images.pexels.com/photos/10305185/pexels-photo-10305185.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="profile pic" />
+                        <Brightness1Icon className='absolute top-0 left-0' sx={{ color: "green" }} /></div>
+                        <div className='text-center p-2  mx-auto text-xl font-mono'>
+                        <p>Rohit Kumar</p>
+                        <p>+91 608XXXXXXX</p>
+                        <p>Next Bill Date : 12-11-2024</p>
+                    </div></div>
+
+                <div className='bg-white rounded-lg p-3 hover:text-white hover:bg-gradient-to-r from-indigo-500 via-purle-500 to-pink-500 cursor-pointer'>
+                    <div className='w-28 h-28 flex justify-center relative items-center border-2 p-1 mx-auto rounded-full'><img className='w-full h-full rounded-full' src="https://images.pexels.com/photos/29773897/pexels-photo-29773897/free-photo-of-muscular-man-posing-in-gym-with-intensity.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="profile pic" />
+                        <Brightness1Icon className='absolute top-0 left-0' sx={{ color: "green" }} /></div>
+                         <div className='text-center p-2  mx-auto text-xl font-mono'>
+                        <p>Mohit Kumar</p>
+                        <p>+91 6308XXXXXXX</p>
+                        <p>Next Bill Date : 31-12-2024</p>
+                    </div>
+                </div>  */}
