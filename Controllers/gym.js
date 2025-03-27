@@ -2,6 +2,7 @@ const Gym = require('../Modals/gym')
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer')
+const jwt=require('jsonwebtoken');
 
 exports.register = async (req, res) => {
     try {
@@ -27,19 +28,28 @@ exports.register = async (req, res) => {
         })
     }
 }
+
+
+const cookieParser={
+    httpOnly:true,
+    secure:false, // se to true in production
+    sameSite:'Lax'
+}
 exports.login = async (req, res) => {
     try {
         const { userName, password } = req.body;
         const gym = await Gym.findOne({ userName });
 
         if (gym && await bcrypt.compare(password, gym.password)) {
+            const token= jwt.sign({gym_id:gym._id},process.env.JWT_SecrateKey)
+            console.log("jwtToken",token)
 
             res.json({ message: 'Logged in successfully', success: "true", gym });
         } else {
-            const hashedPassword = await bcrypt.hash(password, 10)
-            console.log(hashedPassword);
-            const newGym = new Gym({ userName, password: hashedPassword, gymName, profilePic, email });
-            res.status(400).json({ error: 'Invalid credentials' });
+            // const hashedPassword = await bcrypt.hash(password, 10)
+            // console.log(hashedPassword);
+            // const newGym = new Gym({ userName, password: hashedPassword, gymName, profilePic, email });
+            // res.status(400).json({ error: 'Invalid credentials' });
         }
     } catch (err) {
         res.status(500).json({
@@ -74,7 +84,7 @@ exports.sendOtp = async (req, res) => {
                 from: "curiouscode4@gmail.com",
                 to: email,
                 subject: "Password Reset",
-                text: `You reuested a password reset. Your OTP is : ${token}`
+                text: `You requested a password reset. Your OTP is : ${token}`
             };
 
             transporter.sendMail(mailOptions, (error, info) => {
@@ -106,7 +116,7 @@ exports.checkOtp = async (req, res) => {
         });
 
         if (!gym) {
-            return res.status(400).json({ error: 'Otp ia invaild or has expired' });
+            return res.status(400).json({ error: 'Otp ia invalid or has expired' });
 
         } else {
             res.status(200).json({ message: "OTP is successfuly verified" })
