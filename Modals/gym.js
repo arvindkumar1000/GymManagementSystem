@@ -24,14 +24,14 @@ const gymSchema = mongooes.Schema({
     },
     gymName: {
         type: String,
-        reuired: true,
+        reuired: true
     },
     resetPasswordToken: {
-        type: String,
+        type: String
 
     },
     resetPasswordExpires: {
-        type: Date,
+        type: Date
 
     }
 

@@ -2,7 +2,7 @@ const Gym = require('../Modals/gym')
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer')
-const jwt=require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 exports.register = async (req, res) => {
     try {
@@ -17,7 +17,8 @@ exports.register = async (req, res) => {
             })
         }
         else {
-            const newGym = new Gym({ userName, password, gymName, profilePic, email });
+            const hashedPassword= await bcrypt.hash(password,10);
+            const newGym = new Gym({ userName, password: hashedPassword, gymName, profilePic, email });
             await newGym.save();
 
             res.status(201).json({ message: 'user register successfully', success: "yes", data: newGym });
@@ -30,10 +31,10 @@ exports.register = async (req, res) => {
 }
 
 
-const cookieParser={
-    httpOnly:true,
-    secure:false, // se to true in production
-    sameSite:'Lax'
+const cookieOptions = {
+    httpOnly: true,
+    secure: false, // set to true in production
+    sameSite: 'Lax'
 }
 exports.login = async (req, res) => {
     try {
@@ -41,15 +42,17 @@ exports.login = async (req, res) => {
         const gym = await Gym.findOne({ userName });
 
         if (gym && await bcrypt.compare(password, gym.password)) {
-            const token= jwt.sign({gym_id:gym._id},process.env.JWT_SecrateKey)
-            console.log("jwtToken",token)
+            // const token = jwt.sign({ gym_id: gym._id }, process.env.JWT_SecrateKey);
+            
+            // res.cookie("cookie_token", token, cookieOptions)
 
             res.json({ message: 'Logged in successfully', success: "true", gym });
-        } else {
-            // const hashedPassword = await bcrypt.hash(password, 10)
-            // console.log(hashedPassword);
-            // const newGym = new Gym({ userName, password: hashedPassword, gymName, profilePic, email });
-            // res.status(400).json({ error: 'Invalid credentials' });
+        }
+         else {
+            //  const hashedPassword = await bcrypt.hash(password, 10)
+            //  console.log(hashedPassword);
+            //  const newGym = new Gym({ userName,  gymName, profilePic, email });
+             res.status(400).json({ error: 'Invalid credentials' });
         }
     } catch (err) {
         res.status(500).json({
@@ -73,13 +76,15 @@ exports.sendOtp = async (req, res) => {
         if (gym) {
             const buffer = crypto.randomBytes(4); // Get random bytes...
             const token = buffer.readUInt32BE(0) % 900000 + 100000; // Module to get a 6-digit number..
+
             gym.resetPasswordToken = token;
             gym.resetPasswordExpires = Date.now() + 3600000 //1 hour expire date...
 
             await gym.save();
 
 
-            // for email sending
+            // for email sending..........
+            
             const mailOptions = {
                 from: "curiouscode4@gmail.com",
                 to: email,
