@@ -10,7 +10,14 @@ const auth = async (req, res, next) => {
             return res.status(401).json({ error: 'No token, authorization denied' })
         }
 
-        const decode = jwt.compare(token, process.env.JWT_SecrateKey)
+        const decode = jwt.verify(token, process.env.JWT_SecretKey);
+       
+       
+
+        req.gym=await Gym.findById(decode.gym_id).select('-password');
+
+        next();
+
     } catch (err) {
         res.status(401).json({ error: 'Token is not valid' });
     }

@@ -17,7 +17,7 @@ exports.register = async (req, res) => {
             })
         }
         else {
-            const hashedPassword= await bcrypt.hash(password,10);
+            const hashedPassword = await bcrypt.hash(password, 10);
             const newGym = new Gym({ userName, password: hashedPassword, gymName, profilePic, email });
             await newGym.save();
 
@@ -42,17 +42,18 @@ exports.login = async (req, res) => {
         const gym = await Gym.findOne({ userName });
 
         if (gym && await bcrypt.compare(password, gym.password)) {
-            // const token = jwt.sign({ gym_id: gym._id }, process.env.JWT_SecrateKey);
-            
-            // res.cookie("cookie_token", token, cookieOptions)
+
+            const token = jwt.sign({ gym_id: gym._id }, process.env.JWT_SecretKey);
+
+            res.cookie("cookie_token", token, cookieOptions);
 
             res.json({ message: 'Logged in successfully', success: "true", gym });
         }
-         else {
+        else {
             //  const hashedPassword = await bcrypt.hash(password, 10)
             //  console.log(hashedPassword);
             //  const newGym = new Gym({ userName,  gymName, profilePic, email });
-             res.status(400).json({ error: 'Invalid credentials' });
+            res.status(400).json({ error: 'Invalid credentials' });
         }
     } catch (err) {
         res.status(500).json({
@@ -84,7 +85,7 @@ exports.sendOtp = async (req, res) => {
 
 
             // for email sending..........
-            
+
             const mailOptions = {
                 from: "curiouscode4@gmail.com",
                 to: email,
@@ -156,4 +157,9 @@ exports.resetPassword = async (req, res) => {
             error: "Server Error"
         })
     }
+}
+
+
+exports.logout = async (req, res) => {
+    res.clearCookie('cookie_token', cookieOptions).json({ message: 'Logged out successfuly' });
 }
