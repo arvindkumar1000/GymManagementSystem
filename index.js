@@ -12,12 +12,14 @@ app.use(express.json());
 require('./DBConn/conn');
 
 const GymRoutes = require('./Routes/gym');
+const MembershipRoutes=require('./Routes/membership');
 
-app.use('/auth', GymRoutes)
+app.use('/auth', GymRoutes);
+app.use('/plans',MembershipRoutes);
 
-app.get('/', (req, res) => {
-    res.send({ "message": "Congrats your server is runing on port 4000 successfully" })
-})
+// app.get('/', (req, res) => {
+//     res.send({ "message": "Congrats your server is runing on port 4000 successfully" })
+// })
 
 app.listen(PORT, () => {
 
