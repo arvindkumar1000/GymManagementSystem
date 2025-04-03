@@ -13,7 +13,7 @@ const memberSchema = mongooes.Schema({
     address: {
         type: String
     },
-    mobNo: {
+    mobileNo: {
         type: String
     },
     memberShip: {
@@ -45,5 +45,5 @@ const memberSchema = mongooes.Schema({
 })
 
 
-const memberModel = mongooes.Model("member", memberSchema);
+const memberModel = mongooes.model("member", memberSchema);
 module.exports = memberModel;
