@@ -1,3 +1,4 @@
+const { timeStamp } = require('console');
 const mongooes = require('mongoose');
 const { type } = require('os');
 
@@ -42,7 +43,7 @@ const memberSchema = mongooes.Schema({
         type: Date,
         required: true
     }
-})
+},{timeStamps:true})
 
 
 const memberModel = mongooes.model("member", memberSchema);

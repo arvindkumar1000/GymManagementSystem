@@ -49,7 +49,7 @@ function addMonthsToDate(months, joiningDate) {
 
 }
 exports.registerMember = async (req, res) => {
-    try { 
+    try {
 
         const { name, mobileNo, address, membership, profilePic, joiningDate } = req.body;
         const member = await Member.findOne({ gym: req.gym._id, mobileNo });
@@ -84,13 +84,13 @@ exports.searchMember = async (req, res) => {
         const member = await Member.find({
             gym: req.gym._id,
             $or: [{ name: { $regex: '^' + searchTerm, $options: 'i' } },
-                { mobileNo: { $regex: '^' + searchTerm, $options: 'i' } }
-            ] 
+            { mobileNo: { $regex: '^' + searchTerm, $options: 'i' } }
+            ]
         });
         res.status(200).json({
-            message:member.length?"Fetched Members successfully":"NO such member registered yet",
-            members:member,
-            totalMembers:member.length
+            message: member.length ? "Fetched Members successfully" : "NO such member registered yet",
+            members: member,
+            totalMembers: member.length
         })
     } catch (err) {
         console.log(err);
@@ -98,9 +98,55 @@ exports.searchMember = async (req, res) => {
     }
 }
 
-exports.monthlyMember=async(req,res)=>{
+exports.monthlyMember = async (req, res) => {
     try {
-        
+        const now = new Date();
+
+        // Get the first day of the current month.............
+        const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+
+        const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59, 999);
+
+        const member = await Member.find({
+            gtm: req.gym._id,
+            createdAt: {
+                $gte: startOfMonth, // Greater then or equal to the first day of the month
+
+                $lte: endOfMonth  // Less than or equal to the last day of the month
+            }
+        }).sort({ createdAt: -1 });
+
+        res.status(200).json({
+            message: member.length ? "Fetched Memebrs Successfully" : "No Such Memebr Registered yet.",
+            members: member,
+            totalMembers: member.length
+        })
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: 'server error' });
+    }
+}
+
+
+exports.expiringwithin3Days = async (req, res) => {
+    try {
+        const today = new Date();
+        const nextThreeDays = new Date();
+        nextThreeDays.setDate(today.getDate() + 3);
+
+        const member = await Member.find({
+            gym: req.gym._id,
+            nextBillDate: {
+                $gte: today, // Greater than or equal to today
+                $lte: nextThreeDays // Less than or equak to 3 days from today
+            }
+
+        });
+
+        res.status(200).json({
+            message: member.length ? "Fetched Members Successfully" : "No Suchh Member is Expiring within 3 Days"
+        })
     } catch (err) {
         console.log(err);
         res.status(500).json({ error: 'server error' });
